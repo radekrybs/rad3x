@@ -13,7 +13,7 @@ export const site = {
 
   // Optional: base path the site is served from. For a GitHub Pages project
   // site this is usually "/<repo-name>". For a custom domain or user page use "".
-  basePath: "",
+  basePath: "/rad3x",
 
   // Social / contact links shown in the footer. Remove any you don't want.
   links: [
