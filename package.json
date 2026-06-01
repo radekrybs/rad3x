@@ -1,0 +1,22 @@
+{
+  "name": "rad3x",
+  "version": "1.0.0",
+  "description": "Personal website of Radek Rybicki — thoughts, ventures, analysis, and knowledge.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node serve.js",
+    "dev": "node build.js && node serve.js"
+  },
+  "keywords": [
+    "blog",
+    "personal-website",
+    "static-site"
+  ],
+  "author": "Radek Rybicki",
+  "license": "MIT",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^12.0.2"
+  }
+}
