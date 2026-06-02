@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>__TITLE__</title>
+<style>
+  :root{--bg:#131312;--card:#1e1e1c;--border:#2e2e2b;--text:#ececea;--soft:#b3b3ad;--accent:#e8765c;--err:#e0604a}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;padding:24px}
+  .card{width:100%;max-width:380px;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:30px 26px;text-align:center}
+  .lock{font-size:34px;line-height:1;margin-bottom:10px}
+  h1{font-size:1.2rem;margin:0 0 6px;letter-spacing:-0.01em}
+  p{color:var(--soft);font-size:0.92rem;margin:0 0 18px;line-height:1.5}
+  input{width:100%;padding:11px 13px;border-radius:9px;border:1px solid var(--border);background:#151514;color:var(--text);font-size:1rem;margin-bottom:12px}
+  input:focus{outline:none;border-color:var(--accent)}
+  button{width:100%;padding:11px;border:0;border-radius:9px;background:var(--accent);color:#1a1a18;font-weight:700;font-size:0.98rem;cursor:pointer}
+  button:hover{filter:brightness(1.05)}
+  .err{color:var(--err);font-size:0.86rem;margin-top:12px;min-height:1.1em}
+  .hint{color:var(--soft);font-size:0.78rem;margin-top:16px;opacity:.8}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+  <div id="gate" class="card">
+    <form id="f">
+      <div class="lock">🔒</div>
+      <h1>__TITLE__</h1>
+      <p>This analysis is password-protected. Enter the password to view it.</p>
+      <input id="pw" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Password" autofocus>
+      <button type="submit">Unlock</button>
+      <div id="err" class="err" role="alert"></div>
+      <div class="hint"><a href="/analysis/">← Back to Analysis</a></div>
+    </form>
+  </div>
+<script>
+  var SALT="__SALT__", IV="__IV__", ITER=__ITER__, CT="__CT__";
+  function b64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
+  async function deriveKey(pw){
+    var base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    return crypto.subtle.deriveKey({name:'PBKDF2',salt:b64(SALT),iterations:ITER,hash:'SHA-256'},
+      base,{name:'AES-GCM',length:256},false,['decrypt']);
+  }
+  async function unlock(pw){
+    var key=await deriveKey(pw);
+    var plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(IV)},key,b64(CT));
+    return new TextDecoder().decode(plain);
+  }
+  document.getElementById('f').addEventListener('submit',async function(e){
+    e.preventDefault();
+    var err=document.getElementById('err'); err.textContent='';
+    var btn=this.querySelector('button'); btn.disabled=true; btn.textContent='Unlocking…';
+    try{
+      var html=await unlock(document.getElementById('pw').value);
+      var f=document.createElement('iframe');
+      f.setAttribute('title','__TITLE__');
+      f.style.cssText='position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff';
+      document.body.style.display='block';
+      document.body.innerHTML='';
+      document.body.appendChild(f);
+      f.srcdoc=html;
+    }catch(_){
+      err.textContent='Incorrect password. Please try again.';
+      btn.disabled=false; btn.textContent='Unlock';
+    }
+  });
+</script>
+</body>
+</html>
