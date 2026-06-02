@@ -9,11 +9,11 @@ export const site = {
 
   // The public URL where the site is hosted. Used for absolute links and the
   // RSS feed. Update this once you know your final domain / GitHub Pages URL.
-  url: "https://radekrybs.github.io/rad3x",
+  url: "https://rad3x.com",
 
   // Optional: base path the site is served from. For a GitHub Pages project
   // site this is usually "/<repo-name>". For a custom domain or user page use "".
-  basePath: "/rad3x",
+  basePath: "",
 
   // Social / contact links shown in the footer. Remove any you don't want.
   links: [
