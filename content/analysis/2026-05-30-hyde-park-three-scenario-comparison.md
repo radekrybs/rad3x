@@ -19,7 +19,7 @@ the numbers, and a switchable set of offer scenarios for the acquisition case.
 > password. If you need access, reach out and I'll share it.
 
 <p>
-  <a class="button" href="/protected/hyde-park-three-scenario-comparison.html" target="_blank" rel="noopener">
+  <a class="button" href="/protected/hyde-park-three-scenario-comparison.html?v=2" target="_blank" rel="noopener">
     🔒 Open the interactive dashboard →
   </a>
 </p>
