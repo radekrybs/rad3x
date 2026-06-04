@@ -108,6 +108,9 @@ export function layout({ title, description, body, activeDir, canonical }) {
 </html>`;
 }
 
+// A small lock badge shown next to password-protected posts.
+const lockBadge = `<span class="lock-badge" title="Password-protected" aria-label="Password-protected">🔒</span>`;
+
 // A compact card used in lists and on the homepage.
 export function postCard(post, { showSection = false } = {}) {
   const sectionTag = showSection
@@ -119,7 +122,7 @@ export function postCard(post, { showSection = false } = {}) {
         <time datetime="${isoDate(post.date)}">${formatDate(post.date)}</time>
         ${sectionTag}
       </div>
-      <h2 class="card-title"><a href="${url(post.href)}">${escapeHtml(post.title)}</a></h2>
+      <h2 class="card-title"><a href="${url(post.href)}">${escapeHtml(post.title)}${post.protected ? " " + lockBadge : ""}</a></h2>
       ${post.summary ? `<p class="card-summary">${escapeHtml(post.summary)}</p>` : ""}
       <a class="card-read" href="${url(post.href)}">Read →</a>
     </article>`;
@@ -201,7 +204,7 @@ export function postPage(post) {
           <a class="tag" href="${url(`/${post.section}/`)}">${escapeHtml(post.sectionTitle)}</a>
           <time datetime="${isoDate(post.date)}">${formatDate(post.date)}</time>
         </div>
-        <h1>${escapeHtml(post.title)}</h1>
+        <h1>${escapeHtml(post.title)}${post.protected ? " " + lockBadge : ""}</h1>
         ${post.summary ? `<p class="post-lede">${escapeHtml(post.summary)}</p>` : ""}
       </header>
       <div class="post-body">

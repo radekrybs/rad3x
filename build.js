@@ -73,6 +73,7 @@ async function readSectionPosts(section) {
       date,
       summary: data.summary || data.description || "",
       tags: Array.isArray(data.tags) ? data.tags : [],
+      protected: data.protected === true,
       slug,
       section: section.dir,
       sectionTitle: section.title,

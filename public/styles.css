@@ -274,6 +274,14 @@ a.tag:hover {
   padding: 32px 0;
 }
 
+/* Small lock badge next to password-protected post titles. */
+.lock-badge {
+  font-size: 0.7em;
+  vertical-align: middle;
+  opacity: 0.75;
+  margin-left: 0.15em;
+}
+
 /* Call-to-action button (used inside post bodies). */
 .button {
   display: inline-block;

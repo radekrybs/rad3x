@@ -2,7 +2,8 @@
 title: "Hyde Park Medical: Three-Scenario Comparison"
 date: 2026-05-30
 summary: "An interactive side-by-side of two ground-up builds versus an acquisition for a medical-office decision. Password-protected."
-tags: ["real estate", "financial modeling", "🔒 protected"]
+tags: ["real estate", "financial modeling"]
+protected: true
 ---
 
 This is an interactive dashboard comparing three options for a medical-office
