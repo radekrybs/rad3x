@@ -24,7 +24,7 @@ the sliders.
 > password. If you need access, reach out and I'll share it.
 
 <p>
-  <a class="button" href="/protected/1674-hyde-park-jv-partnership-briefing.html?v=2" target="_blank" rel="noopener">
+  <a class="button" href="/protected/1674-hyde-park-jv-partnership-briefing.html?v=3" target="_blank" rel="noopener">
     🔒 Open the interactive briefing →
   </a>
 </p>

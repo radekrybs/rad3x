@@ -40,6 +40,10 @@
   </div>
 <script>
   var SALT="__SALT__", IV="__IV__", ITER=__ITER__, CT="__CT__";
+  // Web Crypto only works in a secure context. If we loaded over plain HTTP,
+  // upgrade to HTTPS before the user even tries — otherwise decryption can't run.
+  if (location.protocol === 'http:') { location.replace(location.href.replace(/^http:/, 'https:')); }
+  var cryptoReady = !!(window.crypto && window.crypto.subtle && window.isSecureContext);
   function b64(s){var b=atob(s),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return u;}
   async function deriveKey(pw){
     var base=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
@@ -54,6 +58,10 @@
   document.getElementById('f').addEventListener('submit',async function(e){
     e.preventDefault();
     var err=document.getElementById('err'); err.textContent='';
+    if(!cryptoReady){
+      err.textContent='Open this page over https:// — encryption is disabled on insecure connections.';
+      return;
+    }
     var btn=this.querySelector('button'); btn.disabled=true; btn.textContent='Unlocking…';
     try{
       var html=await unlock(document.getElementById('pw').value);
@@ -64,8 +72,13 @@
       document.body.innerHTML='';
       document.body.appendChild(f);
       f.srcdoc=html;
-    }catch(_){
-      err.textContent='Incorrect password. Please try again.';
+    }catch(ex){
+      // OperationError = genuine wrong password. Anything else is an environment problem.
+      if(ex && ex.name && ex.name!=='OperationError'){
+        err.textContent='Decryption error ('+ex.name+'). Make sure you are on the https:// address.';
+      } else {
+        err.textContent='Incorrect password. Please try again.';
+      }
       btn.disabled=false; btn.textContent='Unlock';
     }
   });
