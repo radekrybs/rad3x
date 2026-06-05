@@ -1,5 +1,5 @@
 ---
-title: "1674 Hyde Park: JV Partnership Briefing"
+title: "Medical Campus: JV Partnership Briefing"
 date: 2026-06-04
 summary: "An interactive model for structuring a landowner–operator joint venture on a medical campus — capital stack, rent roll, and a tiered waterfall buyout. Password-protected."
 tags: ["real estate", "financial modeling", "joint venture"]
@@ -24,7 +24,7 @@ the sliders.
 > password. If you need access, reach out and I'll share it.
 
 <p>
-  <a class="button" href="/protected/1674-hyde-park-jv-partnership-briefing.html?v=4" target="_blank" rel="noopener">
+  <a class="button" href="/protected/jv-partnership-briefing.html?v=1" target="_blank" rel="noopener">
     🔒 Open the interactive briefing →
   </a>
 </p>
