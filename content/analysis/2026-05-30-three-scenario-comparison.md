@@ -1,5 +1,5 @@
 ---
-title: "Hyde Park Medical: Three-Scenario Comparison"
+title: "Medical Real Estate: Three-Scenario Comparison"
 date: 2026-05-30
 summary: "An interactive side-by-side of two ground-up builds versus an acquisition for a medical-office decision. Password-protected."
 tags: ["real estate", "financial modeling"]
@@ -19,7 +19,7 @@ the numbers, and a switchable set of offer scenarios for the acquisition case.
 > password. If you need access, reach out and I'll share it.
 
 <p>
-  <a class="button" href="/protected/hyde-park-three-scenario-comparison.html?v=3" target="_blank" rel="noopener">
+  <a class="button" href="/protected/three-scenario-comparison.html?v=1" target="_blank" rel="noopener">
     🔒 Open the interactive dashboard →
   </a>
 </p>
